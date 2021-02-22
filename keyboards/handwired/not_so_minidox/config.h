@@ -37,11 +37,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // wiring of each half
 #define MATRIX_ROW_PINS { D7, E6, B4, B5 }
-#define MATRIX_COL_PINS { B6, B2, B3, B1, F7, D4 }
+#define MATRIX_COL_PINS { C6, D4, D0, B6, B2, B3 }
+#define MATRIX_COL_PINS_RIGHT { B3, B2, B6, D0, D4, C6 }
 
 #define USE_SERIAL
+#define SOFT_SERIAL_PIN D2
 
-//#define EE_HANDS
+#define EE_HANDS
 
 #define MASTER_LEFT
 //#define MASTER_RIGHT

@@ -1,7 +1,6 @@
 #ifndef NOSOTMINIDOX_H
 #define NOSOTMINIDOX_H
 
-
 #include "quantum.h"
 
 #define LAYOUT( \
