@@ -9,6 +9,7 @@ enum custom_layers {
     _QWERTY,
     _LOWER,
     _RAISE,
+    _R2,
     _VIM,
     _FUNCTION,
     _ADJUST,
@@ -37,23 +38,29 @@ enum tapdances {
 };
 
 #define KC_RST  RESET
+
 #define KC_CAD  LCTL(LALT(KC_DEL))
 #define KC_RSP  LT(_RAISE, KC_SPC)
-// #define KC_LSP  LT(_LOWER, KC_SPC)
-#define KC_LSP  MO(_LOWER)
-// #define MY_V    TD(TD_V_VIM)
-#define MY_V    LT(_VIM, KC_V)
 #define MY_G    LT(_FUNCTION, KC_G)
 #define MY_LCTL LCTL_T(KC_ESC)
 
+// Thumb Keys
+// #define MY_LSP  LT(_LOWER, KC_SPC)
+#define MY_LSP MO(_LOWER)
+#define MY_TRR LT(_R2, KC_COLN) // Right thumb cluster right button
+
+// Vim Emulation Mode
+// #define MY_V    TD(TD_V_VIM)
+#define MY_SCLN LT(_VIM, KC_SCLN)
+#define MY_V    LT(_VIM, KC_V)
+
 // Configure mod-taps so that S=mod, D=alt, F=ctrl, J=ctrl, K=alt, L=mod, ;=vim
-#define MY_S    LGUI_T  (KC_S)
-#define MY_D    LALT_T  (KC_D)
-#define MY_F    LCTL_T (KC_F)
-#define MY_J    RCTL_T (KC_J)
-#define MY_K    RALT_T  (KC_K)
-#define MY_L    RGUI_T  (KC_L)
-#define MY_SCLN LT      (_VIM, KC_SCLN)
+#define MY_S    LGUI_T(KC_S)
+#define MY_D    LALT_T(KC_D)
+#define MY_F    LCTL_T(KC_F)
+#define MY_J    RCTL_T(KC_J)
+#define MY_K    RALT_T(KC_K)
+#define MY_L    RGUI_T(KC_L)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
@@ -62,19 +69,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
     MY_LCTL,   KC_A,   MY_S,   MY_D,   MY_F,   MY_G,             KC_H,   MY_J,   MY_K,   MY_L,MY_SCLN,KC_QUOT,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,   KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH, KC_ENT,
+    MO(_R2),   KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH, LT(_R2, KC_ENT),
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
-                              KC_LGUI, KC_LSP,KC_LSFT,      KC_RSFT, KC_RSP,KC_COLN
+                              KC_LGUI, MY_LSP,KC_LSFT,      KC_RSFT, KC_RSP,MY_TRR
                           // `-------+-------+-------`     `-------+-------+-------`
    ),
 
   [_LOWER] = LAYOUT(
 // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
-     KC_GRV,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,          KC_CIRC,KC_AMPR,KC_LPRN,KC_RPRN,KC_ASTR, KC_DEL,
+     KC_GRV,KC_EXLM,  KC_AT,KC_HASH, KC_DLR,KC_PERC,          KC_CIRC,KC_AMPR,KC_LPRN,KC_RPRN,KC_ASTR, KC_DEL,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,          KC_PIPE,KC_PLUS,KC_LCBR,KC_RCBR, KC_EQL,KC_BSLS,
+    _______,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,          KC_PIPE,KC_PLUS,KC_LCBR,KC_RCBR, KC_EQL,KC_BSLS,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,_______,_______,_______,TO(_VIM),_______,         _______,KC_MINS,KC_LBRC,KC_RBRC,KC_UNDS, KC_DEL,
+    _______,_______,_______,_______,TO(_VIM), KC_LT,          KC_GT,KC_MINS,KC_LBRC,KC_RBRC,KC_UNDS, KC_DEL,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
                               _______,_______,_______,      _______,MO(_ADJUST),_______
                           // `-------+-------+-------`     `-------+----------+-------`
@@ -82,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
  // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
-     KC_TILD,KC_EXLM,  KC_AT,KC_HASH, KC_DLR,KC_PERC,          KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN, KC_DEL,
+     KC_TILD,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,          KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN, KC_DEL,
  // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-     _______,_______,_______,_______,KC_MINS, KC_EQL,          _______,_______,_______,KC_LBRC,KC_RBRC,KC_PIPE,
+     _______,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,          _______,_______,_______,KC_LBRC,KC_RBRC,KC_PIPE,
  // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
      _______,_______,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
  // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
@@ -92,15 +99,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        // `-------+----------+-------`     `-------+-------+-------`
    ),
 
+  [_R2] = LAYOUT(
+ // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
+     XXXXXXX,XXXXXXX,   KC_7,   KC_8,   KC_9,XXXXXXX,          XXXXXXX,   KC_7,   KC_8,   KC_9,XXXXXXX,XXXXXXX,
+ // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
+     XXXXXXX,XXXXXXX,   KC_4,   KC_5,   KC_6,XXXXXXX,          XXXXXXX,   KC_4,   KC_5,   KC_6,XXXXXXX,XXXXXXX,
+ // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
+     XXXXXXX,XXXXXXX,   KC_1,   KC_2,   KC_3,XXXXXXX,          XXXXXXX,   KC_1,   KC_2,   KC_3,XXXXXXX,XXXXXXX,
+ // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
+                              KC_0,    KC_DOT, KC_ENT,       KC_0  , KC_DOT, KC_ENT
+                       // `-------+----------+-------`     `-------+-------+-------`
+   ),
+
   [_VIM] = LAYOUT(
 // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
-    _______,_______,_______,  VIM_E,_______,_______,          _______,_______, KC_INS,_______,KC_PGUP,KC_HOME,
+    XXXXXXX,XXXXXXX,XXXXXXX,  VIM_E,XXXXXXX,XXXXXXX,          XXXXXXX,XXXXXXX, KC_INS,XXXXXXX,KC_PGUP,KC_HOME,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    VIM_EXT,_______,_______,_______,_______,_______,          KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,KC_PGDN,KC_END,
+    VIM_EXT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,          KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,KC_PGDN,KC_END,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,_______, KC_DEL,_______,_______,  VIM_B,          _______,_______,_______,_______,_______,_______,
+    XXXXXXX,XXXXXXX, KC_DEL,XXXXXXX,XXXXXXX,  VIM_B,          XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
-                              _______,KC_SPC,KC_SPC,      _______,_______,_______
+                              KC_LGUI,_______,KC_LSFT,      KC_RSFT,KC_RSP,_______
                           // `-------+-------+-------`     `-------+-------+-------`
    ),
 
@@ -110,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
     _______, PLOVER,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,_______,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
+    _______,_______,_______,_______,_______,_______,          KC_NLCK,_______,_______,_______,_______,_______,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
                               _______,_______,_______,      _______,_______,_______
                           // `-------+-------+-------`     `-------+-------+-------`
