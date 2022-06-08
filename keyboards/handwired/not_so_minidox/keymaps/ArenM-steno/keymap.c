@@ -47,7 +47,9 @@ enum tapdances {
 // Thumb Keys
 // #define MY_LSP  LT(_LOWER, KC_SPC)
 #define MY_LSP MO(_LOWER)
-#define MY_TRR LT(_R2, KC_COLN) // Right thumb cluster right button
+// TODO: This sends a semi colon for some reason
+/* #define MY_TRR LT(_R2, KC_COLN) // Right thumb cluster right button */
+#define MY_TRR KC_COLN // Right thumb cluster right button
 
 // Vim Emulation Mode
 // #define MY_V    TD(TD_V_VIM)
@@ -69,19 +71,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
     MY_LCTL,   KC_A,   MY_S,   MY_D,   MY_F,   MY_G,             KC_H,   MY_J,   MY_K,   MY_L,MY_SCLN,KC_QUOT,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    MO(_R2),   KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH, LT(_R2, KC_ENT),
+     PLOVER,   KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH, LT(_R2, KC_ENT),
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
                               KC_LGUI, MY_LSP,KC_LSFT,      KC_RSFT, KC_RSP,MY_TRR
                           // `-------+-------+-------`     `-------+-------+-------`
    ),
 
+// NOTE: KC_MENU is used as a nonsense key to triggering a hotkey
   [_LOWER] = LAYOUT(
 // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
      KC_GRV,KC_EXLM,  KC_AT,KC_HASH, KC_DLR,KC_PERC,          KC_CIRC,KC_AMPR,KC_LPRN,KC_RPRN,KC_ASTR, KC_DEL,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
     _______,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,          KC_PIPE,KC_PLUS,KC_LCBR,KC_RCBR, KC_EQL,KC_BSLS,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,_______,_______,_______,TO(_VIM), KC_LT,          KC_GT,KC_MINS,KC_LBRC,KC_RBRC,KC_UNDS, KC_DEL,
+    _______,KC_MENU,_______,_______,TO(_VIM), KC_LT,          KC_GT,KC_MINS,KC_LBRC,KC_RBRC,KC_UNDS, KC_DEL,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
                               _______,_______,_______,      _______,MO(_ADJUST),_______
                           // `-------+-------+-------`     `-------+----------+-------`
@@ -119,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
     XXXXXXX,XXXXXXX, KC_DEL,XXXXXXX,XXXXXXX,  VIM_B,          XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
-                              KC_LGUI,_______,KC_LSFT,      KC_RSFT,KC_RSP,_______
+                              KC_LGUI, KC_SPC,KC_LSFT,      KC_RSFT, KC_SPC,_______
                           // `-------+-------+-------`     `-------+-------+-------`
    ),
 
@@ -127,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
     _______,_______,_______,_______, KC_RST,_______,          _______,_______,_______,_______,KC_PSCR, KC_CAD,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______, PLOVER,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
+    _______,_______, PLOVER,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
     _______,_______,_______,_______,_______,_______,          KC_NLCK,_______,_______,_______,_______,_______,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
@@ -139,11 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
      KC_F12,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,            KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10, KC_F11,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,          XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,          KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,XXXXXXX,XXXXXXX,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,          XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,          XXXXXXX,KC_MUTE,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
-                              _______,_______,_______,      _______,_______,_______
+                              _______,_______,_______,      _______,KC_MPLY,_______
                           // `-------+-------+-------`     `-------+-------+-------`
   ),
 
@@ -151,11 +154,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ,-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------.
     XXXXXXX, STN_N1, STN_N2, STN_N3, STN_N4, STN_N5,           STN_N6, STN_N7, STN_N8, STN_N9,XXXXXXX,XXXXXXX,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-    XXXXXXX, STN_S1, STN_KL, STN_PL, STN_HL, STN_ST1,         STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
+    XXXXXXX, STN_S1, STN_TL, STN_PL, STN_HL, STN_ST1,         STN_ST3, STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
 // |-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------|
-   EXIT_PLV, STN_S2, STN_TL, STN_WL, STN_RL, STN_ST2,         STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
+   EXIT_PLV, STN_S2, STN_KL, STN_WL, STN_RL, STN_ST2,         STN_ST4, STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
 // '-------+-------+-------+-------+-------+-------.         ,-------+-------+-------+-------+-------+-------'
-                                 STN_A, STN_O, EXIT_PLV,      XXXXXXX,   STN_E,  STN_U
+                                 STN_A, STN_O, XXXXXXX,      XXXXXXX,   STN_E,  STN_U
                           // `--------+--------+-------`     `-------+--------+-------`
    ),
 };
@@ -198,6 +201,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+/*
 uint8_t get_dance(qk_tap_dance_state_t *state) {
   switch (state->count) {
     case 1:
@@ -250,13 +254,14 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
   tap_state = 0;
 }
 
-void matrix_init_user() {
-    steno_set_mode(STENO_MODE_GEMINI);
-}
-
 qk_tap_dance_action_t tap_dance_actions[] = {
   // Tap once for Escape, twice for Caps Lock
   // [TD_V_VIM] = ACTION_TAP_DANCE_DOUBLE(KC_B, TO(_VIM)),
   [TD_V_VIM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finish, ql_reset),
   [TD_S_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_P),
 };
+*/
+
+void matrix_init_user() {
+    steno_set_mode(STENO_MODE_GEMINI);
+}

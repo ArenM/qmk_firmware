@@ -1,8 +1,6 @@
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
 
-#include QMK_KEYBOARD_CONFIG_H
-
 #define TAPPING_TERM 155
 #define IGNORE_MOD_TAP_INTERRUPT
 /*#define HOLD_ON_OTHER_KEY_PRESS*/
@@ -12,5 +10,9 @@
 // so it would onlo work for some keys, see https://docs.qmk.fm/#/tap_hold?id=tapping-force-hold
 // #define TAPPING_FORCE_HOLD
 // #define PERMISSIVE_HOLD
+
+// Unused Features
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
 
 #endif

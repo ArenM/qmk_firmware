@@ -1,2 +1,21 @@
+NKRO_ENABLE = yes
 STENO_ENABLE = yes
-TAP_DANCE_ENABLE = yes
+LTO_ENABLE = yes
+
+VIRTSER_ENABLE = yes
+
+EXTRAKEY_ENABLE = yes
+
+# Unused features
+# AUDIO_ENABLE = no
+# MUSIC_ENABLE = no
+# MIDI_ENABLE = no
+
+# MOUSEKEY_ENABLE = no
+
+# TAP_DANCE_ENABLE = no
+
+# CONSOLE_ENABLE = no
+# COMMANDS_ENABLE = no
+
+# RGBLIGHT_ENABLE = no
