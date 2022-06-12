@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SOFT_SERIAL_PIN D2  // or D1, D2, D3, E6
 #define EE_HANDS
 
-#define MASTER_LEFT
+//#define MASTER_LEFT
 //#define MASTER_RIGHT
 
 /* define if matrix has ghost */
