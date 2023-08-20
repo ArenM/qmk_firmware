@@ -19,6 +19,12 @@ from qmk.math import compute
 true_values = ['1', 'on', 'yes']
 false_values = ['0', 'off', 'no']
 
+def log_infodata(info_data):
+    from sys import stderr
+    from pprint import pprint
+    pprint("\n\n\nInfo Json:\n\n\n", stream=stderr)
+    pprint(info_data, stream=stderr)
+
 
 def _valid_community_layout(layout):
     """Validate that a declared community list exists
@@ -274,6 +280,7 @@ def _extract_split_main(info_data, config_c):
             _log_warning(info_data, 'Split main hand is specified in both config.h (EE_HANDS) and info.json (split.main) (Value: %s), the config.h value wins.' % info_data['split']['main'])
 
         info_data['split']['main'] = 'eeprom'
+    # log_infodata(info_data)
 
     if config_c.get('MASTER_RIGHT') is True:
         if 'split' not in info_data:

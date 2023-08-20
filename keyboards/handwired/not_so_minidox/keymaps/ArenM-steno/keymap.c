@@ -7,6 +7,8 @@ typedef struct {
 
 enum custom_layers {
     _QWERTY,
+    _GAME, // qwerty, but optmized for jsut the keys on the left hand
+    _GAME_LOWER,
     _LOWER,
     _RAISE,
     _R2,
@@ -44,6 +46,11 @@ enum tapdances {
 #define MY_G    LT(_FUNCTION, KC_G)
 #define MY_LCTL LCTL_T(KC_ESC)
 
+// Game mode keys
+#define MY_GAME DF(_GAME)
+#define MY_GBL DF(_QWERTY)
+#define GM_TAB LALT_T(KC_TAB)
+
 // Thumb Keys
 // #define MY_LSP  LT(_LOWER, KC_SPC)
 #define MY_LSP MO(_LOWER)
@@ -68,15 +75,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
     KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,             KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC,
     MY_LCTL,KC_A,   MY_S,   MY_D,   MY_F,   MY_G,             KC_H,   MY_J,   MY_K,   MY_L,   MY_SCLN,KC_QUOT,
-    PLOVER, KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,LT(_R2, KC_ENT),
+    KC_PSCR,KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,LT(_R2, KC_ENT),
                             KC_LGUI, MY_LSP,KC_LSFT,          KC_RSFT,KC_RSP, MY_TRR
    ),
 
-// NOTE: KC_MENU is used as a nonsense key to triggering a hotkey
+  [_GAME] = LAYOUT(
+    GM_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,             KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC,
+    MY_LCTL, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,             KC_H,   MY_J,   MY_K,   MY_L,   MY_SCLN,KC_QUOT,
+    KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,LT(_R2, KC_ENT),
+                            MO(_GAME_LOWER), KC_SPC,KC_LSFT,          KC_RSFT,KC_RSP, DF(_QWERTY)
+   ),
+
+  [_GAME_LOWER] = LAYOUT(
+    _______,_______,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
+    KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   _______,          _______,_______,_______,_______,_______,_______,
+    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   _______,          _______,_______,_______,_______,_______,_______,
+                            _______,_______,_______,          _______,_______,_______
+  ),
+
+  // NOTE: KC_MENU is used as a nonsense key to triggering a hotkey
   [_LOWER] = LAYOUT(
      KC_GRV,KC_EXLM,KC_AT,  KC_HASH,KC_DLR, KC_PERC,          KC_CIRC,KC_AMPR,KC_LPRN,KC_RPRN,KC_ASTR,KC_DEL,
     _______,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,          KC_PIPE,KC_PLUS,KC_LCBR,KC_RCBR,KC_EQL, KC_BSLS,
-    _______,KC_MENU,_______,_______,TO(_VIM),KC_LT,           KC_GT,  KC_MINS,KC_LBRC,KC_RBRC,KC_UNDS,KC_DEL,
+    PLOVER, KC_MENU,_______,_______,TO(_VIM),KC_LT,           KC_GT,  KC_MINS,KC_LBRC,KC_RBRC,KC_UNDS,KC_DEL,
                             _______,_______,_______,      _______,MO(_ADJUST),_______
   ),
 
@@ -103,7 +124,7 @@ MO(_ADJUST),_______,KC_1,   KC_2,   KC_3,   _______,          _______,_______,__
 
   [_ADJUST] = LAYOUT(
     _______,_______,_______,_______, KC_RST,_______,          _______,_______,_______,_______,KC_PSCR, KC_CAD,
-    _______,_______, PLOVER,_______,_______,_______,          _______,_______,_______,_______,_______,_______,
+    _______,_______, PLOVER,_______,_______,MY_GAME,          _______,_______,_______,_______,_______,_______,
     _______,_______,_______,_______,_______,_______,          KC_NLCK,_______,_______,_______,_______,_______,
                             _______,_______,_______,          _______,_______,_______
   ),
