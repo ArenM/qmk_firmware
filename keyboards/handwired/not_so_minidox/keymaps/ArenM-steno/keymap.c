@@ -43,7 +43,7 @@ enum tapdances {
 #define KC_RST  RESET
 
 #define KC_CAD  LCTL(LALT(KC_DEL))
-#define KC_RSP  LT(_RAISE, KC_SPC)
+#define MY_RSP  LT(_RAISE, KC_SPC)
 #define MY_G    LT(_FUNCTION, KC_G)
 #define MY_LCTL LCTL_T(KC_ESC)
 
@@ -51,6 +51,7 @@ enum tapdances {
 #define MY_GAME DF(_GAME)
 #define MY_GBL DF(_QWERTY)
 #define GM_TAB LALT_T(KC_TAB)
+#define GM_ESC LSFT_T(KC_ESC)
 
 // Thumb Keys
 // #define MY_LSP  LT(_LOWER, KC_SPC)
@@ -82,14 +83,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,             KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC,
     MY_LCTL,KC_A,   MY_S,   MY_D,   MY_F,   MY_G,             KC_H,   MY_J,   MY_K,   MY_L,   MY_SCLN,KC_QUOT,
     KC_PSCR,KC_Z,   KC_X,   KC_C,   MY_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,LT(_R2, KC_ENT),
-                            KC_LGUI, MY_LSP,KC_LSFT,          KC_RSFT,KC_RSP, MY_TRR
+                            KC_LGUI, MY_LSP,KC_LSFT,          KC_RSFT,MY_RSP, MY_TRR
    ),
 
   [_GAME] = LAYOUT(
     GM_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,             KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC,
-    MY_LCTL,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,             KC_H,   MY_J,   MY_K,   MY_L,   MY_SCLN,KC_QUOT,
-    KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,LT(_R2, KC_ENT),
-                       MO(_GAME_LOWER), KC_SPC,KC_LSFT,       KC_RSFT,KC_RSP, DF(_QWERTY)
+    MY_LCTL,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,             KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,
+    GM_ESC ,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_ENT,
+                       MO(_GAME_LOWER), KC_SPC,KC_LSFT,       KC_RSFT,KC_SPC, DF(_QWERTY)
                        /* MO(_GAME_LOWER), KC_SPC,KC_LSFT,   KC_RSFT,LT(_GAME_RAISE, KC_SPC), DF(_QWERTY) */
    ),
 
