@@ -284,4 +284,32 @@ void matrix_init_user() {
     steno_set_mode(STENO_MODE_GEMINI);
 }
 
+enum serial_layer_cmd {
+    SERIAL_LAYER_NORMAL = 0,
+    SERIAL_LAYER_GAME,
+    SERIAL_LAYER_GAME2,
+};
+
+// defined in a newer version of qmk, copy it here until I bother to upgrade
+void set_single_default_layer(uint8_t default_layer) {
+#if defined(AUDIO_ENABLE) && defined(DEFAULT_LAYER_SONGS)
+    PLAY_SONG(default_layer_songs[default_layer]);
+#endif
+    default_layer_set((layer_state_t)1 << default_layer);
+}
+
+void virtser_recv(uint8_t serIn) {
+    switch (serIn) {
+        case SERIAL_LAYER_NORMAL:
+            set_single_default_layer(_QWERTY);
+            break;
+        case SERIAL_LAYER_GAME:
+            set_single_default_layer(_GAME);
+            break;
+        case SERIAL_LAYER_GAME2:
+            set_single_default_layer(_GAME2);
+            break;
+    }
+}
+
 // vim: colorcolumn=12,20,28,36,44,53,62,70,78,86,94,102
