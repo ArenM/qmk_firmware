@@ -8,6 +8,7 @@ typedef struct {
 enum custom_layers {
     _QWERTY,
     _GAME, // qwerty, but optmized for jsut the keys on the left hand
+    _GAME2, // another version of the game layout
     _GAME_LOWER,
     _GAME_RAISE,
     _LOWER,
@@ -92,6 +93,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     GM_ESC ,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_ENT,
                        MO(_GAME_LOWER), KC_SPC,KC_LSFT,       KC_RSFT,KC_SPC, DF(_QWERTY)
                        /* MO(_GAME_LOWER), KC_SPC,KC_LSFT,   KC_RSFT,LT(_GAME_RAISE, KC_SPC), DF(_QWERTY) */
+   ),
+
+  [_GAME2] = LAYOUT(
+    KC_ESC, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,             KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC,
+    KC_LSFT,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,             KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,
+    KC_1,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,             KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_ENT,
+                       MO(_GAME_LOWER), KC_SPC,KC_2,       KC_RSFT,KC_SPC, DF(_QWERTY)
    ),
 
   [_GAME_LOWER] = LAYOUT(
